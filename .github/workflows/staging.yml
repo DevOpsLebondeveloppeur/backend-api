@@ -39,5 +39,18 @@ jobs:
             - name: Push to Docker Hub
               run: docker push amineayedi/backend-session16:v1    
             - name: Push to Docker Hub
-              run: docker push amineayedi/backend-session16   
+              run: docker push amineayedi/backend-session16 
+    Deploy:
+            runs-on: ubuntu-latest
+            needs: build-and-push
+            steps:
+                - uses: appleboy/ssh-action@v1
+                  with:
+                    host: ${{ secrets.VPS_HOST }}
+                    username: ${{ secrets.VPS_USERNAME }}
+                    password: ${{ secrets.VPS_PASSWORD }}
+                    script: |
+                        cd /home/user/devops-script/backend
+                        docker compose pull backend-api
+                        docker compose up -d backend-api --force-recreate            
             
