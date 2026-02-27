@@ -50,7 +50,7 @@ jobs:
                     username: ${{ secrets.VPS_USERNAME }}
                     password: ${{ secrets.VPS_PASSWORD }}
                     script: |
-                        sudo cd /home/user/devops-script/backend
+                        cd /home/user/devops-script/backend
                         sudo docker compose pull backend-api
                         sudo docker compose up -d backend-api --force-recreate            
             
