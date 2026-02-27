@@ -27,5 +27,8 @@ jobs:
             - name: build docker image
               run:  docker build -t amineayedi/backend-session16:latest . 
             
-            - name: list images   
-              run: docker images
+            - name: Log in to Docker Hub
+              uses: docker/login-action@v3
+              with:
+                username: ${{ vars.DOCKER_USERNAME }}
+                password: ${{ secrets.DOCKERHUB_TOKEN }}
