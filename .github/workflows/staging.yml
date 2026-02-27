@@ -17,3 +17,15 @@ jobs:
             
             - name: Run tests
               run: npm test
+    build-and-push:
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v6
+
+            - name: build docker image
+              run:  docker build -t amineayedi/backend-session16:latest . 
+            
+            - name: list images   
+              run: docker images
