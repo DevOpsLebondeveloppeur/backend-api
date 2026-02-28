@@ -28,7 +28,7 @@ jobs:
               run:  docker build -t amineayedi/backend-session16 . 
 
             - name: tag image by version
-              run: docker tag amineayedi/backend-session16 amineayedi/backend-session16:v1  
+              run: docker tag amineayedi/backend-session16 amineayedi/backend-session16:${{ github.run_number}} 
 
             
             - name: Log in to Docker Hub
